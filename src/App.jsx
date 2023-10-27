@@ -1,14 +1,27 @@
 import { useState } from "react";
 
 import "./App.css";
-import Screen0 from "./routes/Screen0";
-import { Outlet } from "react-router-dom";
+import WelcomePage from "./routes/WelcomePage";
+import { Outlet, useLocation } from "react-router-dom";
+import LoginFlowOne from "./routes/LoginFlowOne";
+import LoginFlow from "./routes/LoginFlow";
+import LoginFlowTwo from "./routes/LoginFlowTwo";
+import LoginFlowThree from "./routes/LoginFlowThree";
+import LoginFlowFour from "./routes/LoginFlowFour";
+import Temp from "./routes/Temp";
 
 function App() {
   return (
     <>
-      <Screen0 />
+      <WelcomePage />
+      {/* <LoginFlow /> */}
       <Outlet />
+      <LoginFlowOne />
+      <LoginFlowTwo />
+      <LoginFlowThree />
+      {/* <LoginFlow /> */}
+      <LoginFlowFour />
+      <Temp />
     </>
   );
 }

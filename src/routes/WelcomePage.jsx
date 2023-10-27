@@ -2,12 +2,9 @@ import React from "react";
 import Image from "../components/Image";
 import x100Logo from "../assets/100x-frame.svg";
 import Button from "../components/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
-const Screen0 = () => {
-  const location = useLocation();
-  console.log(location);
-
+const WelcomePage = () => {
   return (
     <>
       <div className="flex-col md:flex-row flex h-screen w-screen md:gap-28 items-center justify-center bg-black font-['Inter']">
@@ -29,15 +26,10 @@ const Screen0 = () => {
               Join today.
             </h2>
           </div>
-          <Link
-            to="screen01"
-            state={{ background: location }}>
-            <Button
-              varient="base"
-              btnsize="md"
-              text="Create account"
-            />
+          <Link to="login">
+            <Button varient="base" buttonsize="md" >Create Account</Button>
           </Link>
+          {/* <Outlet /> */}
           <section className="inline-flex items-center justify-center h-5 gap-1 w-80">
             <span className="h-px border grow shrink basis-0 border-neutral-700" />
             <span className="text-center text-stone-50 text-base font-['Chirp']">
@@ -49,12 +41,8 @@ const Screen0 = () => {
             <p className="text-stone-50 md:text-xl font-medium font-['Inter']">
               Already have an account?
             </p>
-            <Link to="scren01" state={{background: location}}>
-              <Button
-                varient="outline"
-                btnsize="md"
-                text="Sing up"
-              />
+            <Link to="login" state={{ background: location }}>
+              <Button varient="outline" buttonsize="md" >Sign up</Button>
             </Link>
           </section>
         </section>
@@ -63,4 +51,4 @@ const Screen0 = () => {
   );
 };
 
-export default Screen0;
+export default WelcomePage;
