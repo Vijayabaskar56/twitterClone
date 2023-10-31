@@ -1,14 +1,16 @@
 import React from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
-import Singup from '../assets/signup-x.svg'
+import Singup from "../assets/signup-x.svg";
 import Image from "../components/Image";
-
-
+import { useNavigate } from "react-router-dom";
+import { Formik } from "formik";
+ 
 const LoginFlowThree = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <section className="inline-flex flex-col items-center justify-between w-full h-screen md:w-4/12 md:h-3/5 md:rounded-2xl bg-neutral1000 md:flex">
+      <div className="inline-flex flex-col items-center justify-between w-full h-screen md:w-4/12 md:h-3/5 md:rounded-2xl bg-neutral1000 md:flex">
         <div className="self-stretch px-3.5 py-2.5 md:rounded-2xl flex-col justify-start items-start gap-3 inline-flex">
           <div className="flex flex-col items-start justify-center gap-3">
             <div className="inline-flex items-center self-stretch justify-start gap-5 px-4 py-3">
@@ -28,31 +30,71 @@ const LoginFlowThree = () => {
               </span>
             </p>
             <div className="flex-col items-center justify-center">
-              <section
-                action
-                className="inline-flex flex-col justify-between w-full gap-4"
+              <Formik
+                initialValues={{ VerificationCode: "" }}
+                // validate=
+                onSubmit={(values, { setSubmitting }) => {
+                  setTimeout(() => {
+                    alert(JSON.stringify(values, null, 2));
+                    setSubmitting(false);
+                    navigate("/loginFour");
+                  }, 400);
+                }}
               >
-                <div className="relative">
-                  <InputField name="" type="password" />
-                </div>
-                <a
-                  href="#"
-                  className="text-sm font-normal text-right text-sky-500 font-inter"
-                >
-                  Didn’t receive a code?
-                </a>
-              </section>
+                {({
+                  values,
+                  errors,
+                  touched,
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                  isSubmitting,
+                  /* and other goodies */
+                }) => (
+                  <form
+                    onSubmit={handleSubmit}
+                    className="inline-flex flex-col justify-between w-full gap-4"
+                  >
+                    <InputField
+                      name="verificationCode"
+                      type="number"
+                      placeholder="Verification Code"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                      disabled={isSubmitting}
+                    />
+                    <a
+                      href="#"
+                      className="text-sm font-normal text-right text-sky-500 font-inter"
+                    >
+                      Didn’t receive a code?
+                    </a>
+
+                    {errors.email && touched.email && (
+                      <div className="text-red-600">{errors.email}</div>
+                    )}
+                    <section className="flex-col items-start justify-end pb-5 mx-auto w-w03">
+                      <div className="mx-4">
+                        <Button
+                          varient="base"
+                          btnsize="md"
+                          text="Next"
+                          btntype="submmit"
+                          disabled={isSubmitting}
+                          // onClick={() => {navigate("/loginFour")}}
+                        >
+                          <p className="font-normal">Next</p>
+                        </Button>
+                      </div>
+                    </section>
+                  </form>
+                )}
+              </Formik>
             </div>
           </section>
         </div>
-        <section className="flex-col items-start justify-end pb-5 mx-auto w-w03">
-          <div className="mx-4">
-            <Button varient="base" buttonsize="md">
-              <p className="font-normal">Next</p>
-            </Button>
-          </div>
-        </section>
-      </section>
+      </div>
     </>
   );
 };

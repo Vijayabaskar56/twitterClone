@@ -2,16 +2,15 @@ import React from "react";
 import { Field, Formik } from "formik";
 import { object, string, number } from "yup";
 import InputField from "../components/InputField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import DropDOwn from "../components/DropDOwn";
-import Singup from '../assets/signup-x.svg'
+import Singup from "../assets/signup-x.svg";
 import Image from "../components/Image";
 
 const LoginFlowOne = () => {
-  const Error = ({ error }) => {
-    <div className="text-neutral50">{error}</div>;
-  };
+  const navigate = useNavigate();
+
   const validation = object({
     name: string("Invalid Entry")
       .required("Name Required!")
@@ -25,19 +24,13 @@ const LoginFlowOne = () => {
   });
   return (
     <>
-      <div className="inline-flex bg-transparent md:flex md:justify-center">
-        <div className="h-screen w-screen self-stretch px-3.5 py-2.5 bg-black md:rounded-2xl flex-col justify-start items-start gap-3 inline-flex">
+      <div className="inline-flex bg-transparent md :flex md:justify-center">
+        <div className="h-screen  self-stretch px-3.5 py-2.5 bg-black md:rounded-2xl flex-col justify-start gap-3 inline-flex">
           <div className="flex flex-col items-start justify-center gap-3 ">
             <div className="inline-flex items-center self-stretch justify-start gap-5 px-4 py-3">
-              <a
-                href="../index.html"
-                rel="noopener noreferrer"
-                className="inline-flex items-center"
-              >
-                <button>
-                  <Image src={Singup} alt="back-btn" />
-                </button>
-              </a>
+              <button onClick={() => navigate(-1)}>
+                <Image src={Singup} alt="back-btn" />
+              </button>
               <div className="text-base font-bold text-neutral50">
                 Step 1 of 4
               </div>
@@ -98,8 +91,8 @@ const LoginFlowOne = () => {
                         onBlur={handleBlur}
                         value={values.name}
                         disabled={isSubmitting}
-                        errors = {errors.name}
-                        touched = {touched.name}
+                        errors={errors.name}
+                        touched={touched.name}
                       />
                       <InputField
                         name="email"
@@ -109,8 +102,8 @@ const LoginFlowOne = () => {
                         onChange={handleChange}
                         value={values.email}
                         disabled={isSubmitting}
-                        errors = {errors.email}
-                        touched = {touched.email}
+                        errors={errors.email}
+                        touched={touched.email}
                       />
                       <section className="flex-col items-start gap-2">
                         <h2 className="text-sm font-bold">Date of birth</h2>
@@ -151,7 +144,10 @@ const LoginFlowOne = () => {
                           buttonsize="md"
                           type="submmit"
                           disabled={isSubmitting}
-                        >Create account</Button>
+                          onClick={() => navigate('/logintwo')}
+                        >
+                          Create account
+                        </Button>
                       </div>
                     </form>
                   )}

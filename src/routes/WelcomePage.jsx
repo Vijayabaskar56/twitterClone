@@ -1,10 +1,10 @@
-import React from "react";
 import Image from "../components/Image";
 import x100Logo from "../assets/100x-frame.svg";
 import Button from "../components/Button";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate, useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex-col md:flex-row flex h-screen w-screen md:gap-28 items-center justify-center bg-black font-['Inter']">
@@ -26,8 +26,13 @@ const WelcomePage = () => {
               Join today.
             </h2>
           </div>
-          
-            <Button varient="base" buttonsize="md" onClick={() => useNavigate("/login")} >Create Account</Button>
+          <Button
+            varient="base"
+            buttonsize="md"
+            onClick={() => navigate('/loginOne')}
+          >
+            Create Account
+          </Button>
           {/* <Outlet /> */}
           <section className="inline-flex items-center justify-center h-5 gap-1 w-80">
             <span className="h-px border grow shrink basis-0 border-neutral-700" />
@@ -40,8 +45,10 @@ const WelcomePage = () => {
             <p className="text-stone-50 md:text-xl font-medium font-['Inter']">
               Already have an account?
             </p>
-            <Link to="login" state={{ background: location }}>
-              <Button varient="outline" buttonsize="md" >Sign up</Button>
+            <Link to="/loginOne" state={{ background: location }}>
+              <Button varient="outline" buttonsize="md" onClick={() => navigate('/login')}>
+                Sign up
+              </Button>
             </Link>
           </section>
         </section>
