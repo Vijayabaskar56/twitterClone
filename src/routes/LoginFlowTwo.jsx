@@ -1,10 +1,12 @@
 import React from "react";
-import Input from "../components/Input";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
+import Image from "../components/Image";
+import Singup from "../assets/signup-x.svg";
 
 const LoginFlow = () => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="inline-flex flex-col items-center justify-between w-full h-screen md:w-4/12 md:h-3/5 md:rounded-2xl bg-neutral1000 md:flex">
@@ -12,7 +14,7 @@ const LoginFlow = () => {
           <div className="flex flex-col items-start justify-center gap-3">
             <div className="inline-flex items-center self-stretch justify-start gap-5 px-4 py-3">
               <button>
-                <img src="../../public/images/signup-x.svg" alt srcSet />
+                <Image src={Singup} alt="back-btn" />
               </button>
               <div className="text-base font-bold text-neutral50">
                 Step 2 of 4
@@ -28,7 +30,12 @@ const LoginFlow = () => {
                 action
                 className="inline-flex flex-col justify-between w-full gap-8"
               >
-                <InputField name="name" type="text" label="name" value="Vijayabaskar" />
+                <InputField
+                  name="name"
+                  type="text"
+                  label="name"
+                  value="Vijayabaskar"
+                />
                 <InputField
                   name="email"
                   type="email"
@@ -47,9 +54,13 @@ const LoginFlow = () => {
         </div>
         <section className="flex-col items-start justify-end pb-5">
           <div className="m-auto">
-            <Link to="loginFLowThree">
-              <Button varient="bluebtn" buttonsize="lg" >Post</Button>
-            </Link>
+            <Button
+              varient="bluebtn"
+              buttonsize="lg"
+              onClick={() => navigate("/loginThree")}
+            >
+              Post
+            </Button>
           </div>
         </section>
       </section>
