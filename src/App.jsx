@@ -1,27 +1,46 @@
 import { useState } from "react";
 
 import "./App.css";
-import WelcomePage from "./routes/WelcomePage";
-import { Outlet, useLocation } from "react-router-dom";
-import LoginFlowOne from "./routes/LoginFlowOne";
-import LoginFlow from "./routes/LoginFlow";
-import LoginFlowTwo from "./routes/LoginFlowTwo";
-import LoginFlowThree from "./routes/LoginFlowThree";
-import LoginFlowFour from "./routes/LoginFlowFour";
-import Temp from "./routes/Temp";
+import Error404 from "./routes/Error404.jsx";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+  Routes,
+} from "react-router-dom";
+import "./index.css";
+import WelcomePage from "./routes/WelcomePage.jsx";
+import LoginFlowOne from "./routes/LoginFlowOne.jsx";
+import LoginFlowTwo from "./routes/LoginFlowTwo.jsx";
+import LoginFlow from "./routes/LoginFlow.jsx";
+
+const route = createBrowserRouter(
+  createRoutesFromElements(
+    // <Routes>
+    <>
+      <Route
+        path="/"
+        element={<WelcomePage />}>
+        {/* <Route path="screen02" element={<Screen02 />}/> */}
+      </Route>
+      <Route
+        path="/login"
+        element={<LoginFlowOne />}
+      />
+      <Route
+        path="/screen02"
+        element={<LoginFlowTwo />}
+      />
+    </>
+    // </Routes>
+  )
+);
 
 function App() {
   return (
     <>
-      <WelcomePage />
-      {/* <LoginFlow /> */}
-      <Outlet />
-      <LoginFlowOne />
-      <LoginFlowTwo />
-      <LoginFlowThree />
-      {/* <LoginFlow /> */}
-      <LoginFlowFour />
-      <Temp />
+      <RouterProvider router={route} />
     </>
   );
 }

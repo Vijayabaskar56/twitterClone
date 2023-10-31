@@ -2,7 +2,7 @@ import React from "react";
 import Image from "../components/Image";
 import x100Logo from "../assets/100x-frame.svg";
 import Button from "../components/Button";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
   return (
@@ -26,9 +26,8 @@ const WelcomePage = () => {
               Join today.
             </h2>
           </div>
-          <Link to="login">
-            <Button varient="base" buttonsize="md" >Create Account</Button>
-          </Link>
+          
+            <Button varient="base" buttonsize="md" onClick={() => useNavigate("/login")} >Create Account</Button>
           {/* <Outlet /> */}
           <section className="inline-flex items-center justify-center h-5 gap-1 w-80">
             <span className="h-px border grow shrink basis-0 border-neutral-700" />
