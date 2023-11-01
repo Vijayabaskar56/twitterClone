@@ -1,7 +1,7 @@
 import Image from "../components/Image";
 import x100Logo from "../assets/100x-frame.svg";
 import Button from "../components/Button";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const WelcomePage = () => {
           <Button
             varient="base"
             buttonsize="md"
-            onClick={() => navigate('/loginOne')}
+            onClick={() => navigate("/loginOne")}
           >
             Create Account
           </Button>
@@ -46,7 +46,11 @@ const WelcomePage = () => {
               Already have an account?
             </p>
             <Link to="/loginOne" state={{ background: location }}>
-              <Button varient="outline" buttonsize="md" onClick={() => navigate('/login')}>
+              <Button
+                varient="outline"
+                buttonsize="md"
+                onClick={() => navigate("/login")}
+              >
                 Sign up
               </Button>
             </Link>
