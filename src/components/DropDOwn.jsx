@@ -1,7 +1,7 @@
 import { Field } from "formik";
-import React from "react";
+import PropTypes from "prop-types";
 
-const DropDOwn = ({ name,...rest }) => {
+const DropDOwn = ({ name, ...rest }) => {
   const month = [
     "January",
     "February",
@@ -51,7 +51,9 @@ const DropDOwn = ({ name,...rest }) => {
           {...rest}
         >
           <option value selected disabled />
-          <option value="">{name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}</option>
+          <option value="">
+            {name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}
+          </option>
           {options.map((option) => {
             return (
               <option key={option} value={option}>
@@ -66,3 +68,7 @@ const DropDOwn = ({ name,...rest }) => {
 };
 
 export default DropDOwn;
+
+DropDOwn.propTypes = {
+  name: PropTypes.string,
+};

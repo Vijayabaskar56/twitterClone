@@ -1,13 +1,9 @@
-import { useState } from "react";
-
 import "./App.css";
-import Error404 from "./routes/Error404.jsx";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
-  Routes,
 } from "react-router-dom";
 import "./index.css";
 import WelcomePage from "./routes/WelcomePage.jsx";
@@ -20,8 +16,28 @@ import Home from "./routes/AppFlow/Home";
 import Nav from "./routes/AppFlow/Nav";
 import Profile from "./routes/AppFlow/Profile";
 import EditProfile from "./routes/AppFlow/EditProfile";
+import PostTweet from "./routes/AppFlow/PostTweet";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "./routes/context/AuthContext";
+import AuthProvider from "./routes/context/AuthProvider";
+import { ThemeProvider } from "./routes/context/Theme";
 
 function App() {
+  const [themeMode, setThemeMode] = useState("dark");
+
+  const darkTheme = () => {
+    setThemeMode("dark");
+  };
+
+  const lightTheme = () => {
+    setThemeMode("light");
+  };
+
+  useEffect(() => {
+    document.querySelector("html").classList.remove("dark", "lightTheme");
+    document.querySelector("html").classList.add(themeMode);
+  }, [themeMode]);
+
   const route = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -38,15 +54,30 @@ function App() {
           <Route path="foryou" element={<Home />} />
           <Route path="following" element={<Home />} />
         </Route>
-          <Route path="profile" element={<Profile />}>
-          </Route>
-            <Route path="editprofile" element={<EditProfile />} />
+        <Route path="profile" element={<Profile />}></Route>
+        <Route path="editprofile" element={<EditProfile />} />
+        <Route path="postTweet" element={<PostTweet />} />
       </>
     )
   );
+
+  function TwitterApp() {
+    const { isLoggedin } = useContext(AuthContext);
+
+    return (
+      <>
+        <RouterProvider router={route} />
+      </>
+    );
+  }
+
   return (
     <>
-      <RouterProvider router={route} />
+      <AuthProvider>
+        <ThemeProvider value={{ themeMode, darkTheme, lightTheme }}>
+          <TwitterApp />
+        </ThemeProvider>
+      </AuthProvider>
     </>
   );
 }

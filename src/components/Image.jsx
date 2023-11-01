@@ -1,7 +1,6 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const Image = ({size, ...rest}) => {
+const Image = ({ size, ...rest }) => {
   const styleClass = `${size}`;
 
   return (
@@ -13,6 +12,6 @@ const Image = ({size, ...rest}) => {
 
 Image.propTypes = {
   size: PropTypes.string,
-}
+};
 
 export default Image;

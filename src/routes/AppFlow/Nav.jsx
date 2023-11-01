@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Logo100X from "../../assets/100x-frame.svg";
 import Image from "../../components/Image";
 import Profile from "../../assets/group-default.svg";
 import HomeIcon from "../../assets/home-default.svg";
-
 
 const Nav = () => {
   const [isActive, setIsActive] = useState(false);
@@ -47,7 +46,7 @@ const Nav = () => {
         </nav>
         <Outlet />
         <section>
-          <div className="flex items-center justify-center w-full h-6 gap-10 px-6 py-5">
+          <div className="fixed bottom-0 flex items-center justify-center w-full h-6 gap-10 px-6 py-5 bg-neutral1000">
             <Link to="/profile">
               <Image src={HomeIcon} alt="home-icon" />
             </Link>

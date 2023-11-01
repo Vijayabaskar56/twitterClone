@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Input = ({ label, type, isdisable, setInputValue, inputValue }) => {
   return (
@@ -32,3 +32,11 @@ const Input = ({ label, type, isdisable, setInputValue, inputValue }) => {
 };
 
 export default Input;
+
+Input.propTypes = {
+  label: PropTypes.string,
+  type: PropTypes.string,
+  isdisable: PropTypes.bool,
+  setInputValue: PropTypes.func,
+  inputValue: PropTypes.string,
+};
