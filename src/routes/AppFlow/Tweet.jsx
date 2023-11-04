@@ -10,13 +10,11 @@ import userAvatar from "../../assets/user-avatar.svg";
 import ReactIcons from "./componenets/ReactIcons";
 import { useState } from "react";
 import TweetHeader from "./componenets/TweetHeader";
-const Tweet = () => {
-  const [active, setActive] = useState(false);
-
-  const handleClick = () => {
-    setActive(!active);
-  };
-
+const Tweet = ({ ...tweets }) => {
+  const [retweet, setRetweet] = useState(false);
+  const [like, setLike] = useState(false);
+  const [share, setShare] = useState(false);
+  console.log(tweets);
   return (
     <>
       <main>
@@ -24,31 +22,31 @@ const Tweet = () => {
           <img className="relative w-12 h-12 rounded-full" src={userAvatar} />
           <div className="inline-flex flex-col items-start justify-start gap-1 grow shrink basis-0">
             <TweetHeader
-              name="aarushe reddy"
-              userId="aarushe_reddy"
-              time="24h"
-              tweet="Don't wish for it work for it."
+              name={tweets.tweet.userId}
+              userId={tweets.tweet.id}
+              time={tweets.tweet.time}
+              tweet={tweets.tweet.tweetText}
             />
             <div className="inline-flex items-center self-stretch justify-between">
               <ReactIcons src={CommentIcon} alt="comment-icon" value="11" />
               <ReactIcons
-                src={!active ? RetweetIcon : retweetActiveIcon}
+                src={!retweet ? RetweetIcon : retweetActiveIcon}
                 alt="retweet-icon"
                 value="11"
-                onClick={handleClick}
+                onClick={() => setRetweet(!retweet)}
               />
               <ReactIcons
-                src={!active ? heartICon : heartActiveIcon}
+                src={!like ? heartICon : heartActiveIcon}
                 alt="heart-icon"
                 value="11"
-                onClick={handleClick}
+                onClick={() => setLike(!like)}
               />
               <ReactIcons src={reachIcon} alt="reach-icon" value="11" />
               <ReactIcons
-                src={!active ? shareIcon : shareActiveIcon}
+                src={!share ? shareIcon : shareActiveIcon}
                 alt="share-icon"
                 value="11"
-                onClick={handleClick}
+                onClick={() => setShare(!share)}
               />
             </div>
           </div>

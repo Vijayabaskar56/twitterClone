@@ -1,4 +1,9 @@
-const TweetHeader = ({ name, userId, time, tweet }) => {
+const TweetHeader = ({
+  name = "VJ",
+  userId = "@Vj",
+  time = "3hrs",
+  tweet = "Life is what you make it",
+}) => {
   return (
     <>
       <div className="inline-flex items-center self-stretch justify-start gap-px">

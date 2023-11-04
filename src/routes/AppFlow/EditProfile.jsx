@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { ErrorMessage, Field, Formik } from "formik";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import { object, string } from "yup";
@@ -51,6 +51,7 @@ const EditProfile = () => {
       .max(20, "Name should be 20 letter's"),
     location: string("Invalid Entry").required("Email Requried"),
     website: string("invalid Entry").url("Not a valid url"),
+    bio: string().max(160, "160 Characters only"),
   });
 
   function onImageChange(e) {
@@ -71,6 +72,7 @@ const EditProfile = () => {
               name: "vj-bass",
               location: "madurai",
               website: "https://www.google.com",
+              bio: " ",
             }}
             validationSchema={validation}
             onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -190,28 +192,35 @@ const EditProfile = () => {
                   errors={errors.website}
                   touched={touched.website}
                 />
+
+                <div className="flex-col">
+                  <fieldset className="flex items-center self-stretch px-3 py-4 pt-2 border border-solid rounded group border-neutral-500 focus-within:border-blue-400">
+                    <legend className="text-xs not-italic font-medium leading-normal text-neutral-500 group-focus-within:text-blue-400">
+                      Bio
+                    </legend>
+                    <Field
+                      as="textarea"
+                      id="bio"
+                      name="bio"
+                      rows="3"
+                      cols="40"
+                      onChange={handleChange}
+                      className="w-full bg-transparent text-neutral-50 placeholder:text-neutral-500 focus:outline-none"
+                      placeholder="What's happening?!"
+                      defaultValue={
+                        "Digital Goodies Team - Web & Mobile UI/UX development; Graphics; Illustrations\n    "
+                      }
+                    />
+                  </fieldset>
+                  <ErrorMessage
+                    name="bio"
+                    component="div"
+                    className="text-red-700"
+                  />
+                </div>
               </form>
             )}
           </Formik>
-          <section className="relative">
-            <textarea
-              name="bio"
-              id="bio"
-              cols={40}
-              rows={4}
-              className="block px-3 pb-2.5 pt-4 w-full text-sm outline-none text-gray-900 bg-black rounded-md border-2 border-solid border-neutral500 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer/name"
-              placeholder=" "
-              defaultValue={
-                "Digital Goodies Team - Web & Mobile UI/UX development; Graphics; Illustrations\n    "
-              }
-            />
-            <label
-              htmlFor="bio"
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-black px-2 peer-focus/name:px-2 peer-focus/name:text-blue-600 peer-focus/name:dark:text-blue-500 peer-placeholder-shown/name:scale-100 peer-placeholder-shown/name:-translate-y-1/2 peer-placeholder-shown/name:top-1/2 peer-focus/name:top-2 peer-focus/name:scale-75 peer-focus/name:-translate-y-4 left-1"
-            >
-              Bio
-            </label>
-          </section>
         </main>
       </div>
     </>

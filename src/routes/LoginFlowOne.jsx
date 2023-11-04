@@ -1,4 +1,3 @@
-import React from "react";
 import { Field, Formik } from "formik";
 import { object, string, number } from "yup";
 import InputField from "../components/InputField";
@@ -24,7 +23,7 @@ const LoginFlowOne = () => {
   });
   return (
     <>
-      <div className="inline-flex bg-transparent md :flex md:justify-center">
+      <div className="inline-flex md:bg-transparent md:flex md:justify-center">
         <div className="h-screen  self-stretch px-3.5 py-2.5 bg-black md:rounded-2xl flex-col justify-start gap-3 inline-flex">
           <div className="flex flex-col items-start justify-center gap-3 ">
             <div className="inline-flex items-center self-stretch justify-start gap-5 px-4 py-3">
@@ -144,7 +143,7 @@ const LoginFlowOne = () => {
                           buttonsize="md"
                           type="submmit"
                           disabled={isSubmitting}
-                          onClick={() => navigate('/logintwo')}
+                          onClick={() => navigate("/logintwo")}
                         >
                           Create account
                         </Button>

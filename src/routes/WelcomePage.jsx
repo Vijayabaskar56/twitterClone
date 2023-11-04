@@ -1,9 +1,10 @@
 import Image from "../components/Image";
 import x100Logo from "../assets/100x-frame.svg";
 import Button from "../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   return (
     <>
@@ -29,7 +30,9 @@ const WelcomePage = () => {
           <Button
             varient="base"
             buttonsize="md"
-            onClick={() => navigate("/loginOne")}
+            onClick={() =>
+              navigate("/loginOne", { state: { background: location } })
+            }
           >
             Create Account
           </Button>
@@ -57,6 +60,7 @@ const WelcomePage = () => {
           </section>
         </section>
       </div>
+      <Outlet />
     </>
   );
 };
