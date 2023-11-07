@@ -9,9 +9,9 @@ import { useTweet } from "../context";
 const PostTweet = () => {
   const [charCount, setcharCount] = useState(0);
   const ref = useRef();
-  const [tweets, settweet] = useState(" ");
   const navigate = useNavigate();
   const { tweet, postTweet } = useTweet();
+  const [tweets, settweet] = useState(" ");
 
   // This only tracks the auto-sized height so we can tell if the user has manually resized
   const autoHeight = useRef();
@@ -82,7 +82,7 @@ const PostTweet = () => {
                 }}
                 value={tweets}
                 onChange={handleChange}
-                className={`bg-black resize-y focus:outline-none caret-twitterBlue placeholder:text-neutral600 ${
+                className={`bg-black resize-y focus:outline-none caret-twitterBlue w-full placeholder:text-neutral600 ${
                   charCount < 280 ? "text-neutral-50" : "text-red-700"
                 }`}
                 placeholder="What's happening?!"

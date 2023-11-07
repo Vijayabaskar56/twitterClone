@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const TweetHeader = ({
   name = "VJ",
   userId = "@Vj",
@@ -22,3 +24,10 @@ const TweetHeader = ({
 };
 
 export default TweetHeader;
+
+TweetHeader.propTypes = {
+  name: PropTypes.string,
+  userId: PropTypes.string,
+  time: PropTypes.string,
+  tweet: PropTypes.string,
+};

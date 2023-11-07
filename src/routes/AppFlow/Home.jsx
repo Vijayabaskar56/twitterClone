@@ -1,6 +1,6 @@
 import Tweet from "./Tweet";
-import { TweetProvider, useTweet } from "../context/index";
-import { useEffect, useState } from "react";
+import { useTweet } from "../context/index";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 const Home = () => {
   const { tweets } = useTweet();
@@ -16,7 +16,7 @@ const Home = () => {
             <Tweet tweet={tweets} />
           </div>
         ))}
-        <Tweet tweet={tweet} />
+        {/* <Tweet tweet={tweet} /> */}
         <div className="flex flex-col self-stretch bg-orange600">
           NOting yet to see
         </div>
