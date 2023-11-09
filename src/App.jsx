@@ -29,9 +29,11 @@ import {
   useTweet,
 } from "./routes/context/index.js";
 import { LoginProvider } from "./routes/context/login.js";
+import ErrorPage from "./routes/Error404.jsx";
+import { createPortal } from "react-dom";
+import Error from "./components/Error.jsx";
 
 function App() {
-  const background = location.state && location.state.background;
   const [tweets, setTweets] = useState([]);
   const [profileDetails, setProfileDetails] = useState([]);
 
@@ -113,21 +115,57 @@ function App() {
         <Route
           path="/"
           element={<WelcomePage />}
-          location={location || background}
+          errorElement={createPortal(<Error />, document.body)}
         ></Route>
-        <Route path="loginOne" element={<LoginFlowOne />} />
+        <Route
+          path="loginOne"
+          element={<LoginFlowOne />}
+          errorElement={<ErrorPage />}
+        />
         {/* {background && <Route path="loginOne" element={<LoginFlowOne />} />} */}
-        <Route path="loginTwo" element={<LoginFlowTwo />} />
-        <Route path="loginThree" element={<LoginFlowThree />} />
-        <Route path="loginFour" element={<LoginFlowFour />} />
+        <Route
+          path="loginTwo"
+          element={<LoginFlowTwo />}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path="loginThree"
+          element={<LoginFlowThree />}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path="loginFour"
+          element={<LoginFlowFour />}
+          errorElement={<ErrorPage />}
+        />
 
-        <Route path="home" element={<Nav />}>
-          <Route path="foryou" element={<Home />} />
-          <Route path="following" element={<Home />} />
+        <Route path="home" element={<Nav />} errorElement={<ErrorPage />}>
+          <Route
+            path="foryou"
+            element={<Home />}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="following"
+            element={<Home />}
+            errorElement={<ErrorPage />}
+          />
         </Route>
-        <Route path="profile" element={<Profile />}></Route>
-        <Route path="editprofile" element={<EditProfile />} />
-        <Route path="postTweet" element={<PostTweet />} />
+        <Route
+          path="profile"
+          element={<Profile />}
+          errorElement={<ErrorPage />}
+        ></Route>
+        <Route
+          path="editprofile"
+          element={<EditProfile />}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path="postTweet"
+          element={<PostTweet />}
+          errorElement={<ErrorPage />}
+        />
       </>
     )
   );
@@ -149,12 +187,10 @@ function App() {
       </>
     );
   }
-
   return (
     <>
       <TwitterApp />
     </>
   );
 }
-
 export default App;
